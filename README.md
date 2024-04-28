@@ -14,12 +14,10 @@ https://tldp.org/LDP/Bash-Beginners-Guide/html/ -->
 
 Use ().
 If you want to run them sequentially:
-(myCommand1; myCommand2) &
+1. (myCommand1; myCommand2) &
 or
-(myCommand1 &) && (myCommand2 &)
-
+2. (myCommand1 &) && (myCommand2 &)
 If you want them to run parallel:
-myCommand1 & myCommand2 &
-
+3. myCommand1 & myCommand2 &
 In bash you can also use this (space behind the { and the ; are mandatory):
-{ myCommand1 && myCommand2; } &
+4. { myCommand1 && myCommand2; } &
