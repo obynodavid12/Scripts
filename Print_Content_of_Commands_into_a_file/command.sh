@@ -1,4 +1,3 @@
- 
 #!/bin/bash
 
 get_system_info() {
