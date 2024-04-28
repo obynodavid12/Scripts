@@ -6,11 +6,11 @@ https://tldp.org/LDP/Bash-Beginners-Guide/html/ -->
 ./script.sh > file.txt
 
 # FOR MULTIPLE COMMANDS IN LINUX
-A; B    # Run A and then B, regardless of success of A
-A && B  # Run B if and only if A succeeded
-A || B  # Run B if and only if A failed
-A &     # Run A in background.
-A & B  # runs simultaneously
+1. A; B    # Run A and then B, regardless of success of A
+2. A && B  # Run B if and only if A succeeded
+3. A || B  # Run B if and only if A failed
+4. A &     # Run A in background.
+5. A & B  # runs simultaneously
 
 Use ().
 If you want to run them sequentially:
