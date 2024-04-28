@@ -13,16 +13,13 @@ A &     # Run A in background.
 A & B  # runs simultaneously
 
 Use ().
-
 If you want to run them sequentially:
-
 (myCommand1; myCommand2) &
 or
-
 (myCommand1 &) && (myCommand2 &)
+
 If you want them to run parallel:
-
 myCommand1 & myCommand2 &
-In bash you can also use this (space behind the { and the ; are mandatory):
 
+In bash you can also use this (space behind the { and the ; are mandatory):
 { myCommand1 && myCommand2; } &
