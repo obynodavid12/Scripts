@@ -10,4 +10,5 @@ class-notes/
 *.ppt
 .terraform*
 terrafrom.state
+terrafrom.tfstate
 terraform.state.backup
