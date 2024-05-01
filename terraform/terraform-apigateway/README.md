@@ -7,22 +7,21 @@
 
 Create AmazonAPIGatewayPushToCloudWatchLogs with assume policy with apigateway service
 
-In APIGateWay Setting of any APIGateWay created=>Add the CloudWatch Log Role ARN created above=Save. You can enable the logs for each APIGateway Stages=Select the Stage=>Logging/Tracing=>Enable CloudWatch Logs=>Log Level[ERROR and INFO Logs]=Log Full Requests/Response Data[Enable it](REST API or Lambda Integration Backendvor HTTP BACKEND)=>Custom Access Logging[Enable]not sure if we need the custom access logging=>Access Log Destination ARN[arn:aws:logs:eu-west-2:xxxxxxxxxx:log-group:APIGatewayAccessLogs]have to create APIGatewayAccessLogs or Kinesis Data Firehose Stream Logs
+In APIGateWay Setting of any APIGateWay created=>Add the CloudWatch Log Role ARN created above=Save. You can enable the logs for each APIGateway Stages=Select the Stage=>Logging/Tracing=>Enable CloudWatch Logs=>Log Level[ERROR and INFO Logs]=Log Full Requests/Response Data[Enable it](Rest API or Lambda Integration Backend or Http Backend)=>Custom Access Logging[Enable]not sure if we need the custom access logging=>Access Log Destination ARN[arn:aws:logs:eu-west-2:xxxxxxxxxx:log-group:APIGatewayAccessLogs]have to create APIGatewayAccessLogs or Kinesis Data Firehose Stream Logs
 
 These log settings are set using MethodSetting:
 DataTraceEnabled - is for "Log full requests..."
 LoggingLevel is for "Log level"
 MetricsEnabled is for "Enable detailed CloudWatch metrics"
 
+# If the logging level is INFO, then the logs include both ERROR events and extra informational events. 
+
+# https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/
+According to the above documentation after creating the Role, you need to add it to the Global AWS APIGateway Settings(when you open the Console, there is a settings menu in the left pane) for the CloudWatch log role ARN. Then it will use that role for all the gateways you create, so this is a one-time step.
+
+
 # https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-logging.html - Has examples of CLF, JSON,XML & CSV Formats
 Note: HTTP APIs currently support only access logging. Logging setup is different for these APIs. For more information, see Configuring logging for an HTTP API.
-
-aws logs create-log-group --log-group-name my-log-group
-
-aws apigatewayv2 update-stage --api-id abcdef \
-    --stage-name '$default' \
-    --access-log-settings '{"DestinationArn": "arn:aws:logs:region:account-id:log-group:log-group-name", "Format": "$context.identity.sourceIp - - [$context.requestTime] \"$context.httpMethod $context.routeKey $context.protocol\" $context.status $context.responseLength $context.requestId"}'
-
 
 # Troubleshoot issues connecting to an API Gateway Private API endpoint [Forbidden Error]-https://www.youtube.com/watch?v=KqTsBi3DisE
 curl -v --connect-timeout 5 https://xxxx.execute-api.us-west-1.amazonaws.com/dev/pets
@@ -96,4 +95,5 @@ Go to CloudWatch Logs to see the Logs-/aws/lambda/test-hello-lambda
 # https://stackoverflow.com/questions/52156285/terraform-how-to-enable-api-gateway-execution-logging
 # https://stackoverflow.com/questions/59051933/configuring-logging-of-aws-api-gateway - Has a SAM template to create the API Gateway CW Log.
 
-According to this documentation (https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/) after creating the Role, you need to add it to the Global AWS Api Gateway Settings (when you open the Console, there is a settings menu in the left pane) as the CloudWatch log role ARN. Then it will use that role for all the gateways you create, so this is a one-time step.
+
+

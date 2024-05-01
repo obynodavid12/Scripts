@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Run multiple commands
-whoami;
-hostname;
-ls -l;
-date
+whoami; echo '---------';sleep 1;
+hostname; echo '---------';sleep 1;
+ls -l; echo '---------';sleep 1;
+date; echo '---------';sleep 1;
 
 # Redirect the output to file.txt
 whoami > file.txt
