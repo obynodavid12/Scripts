@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-# List of switcher API URLs
+# List of Restful API URLs
 api_urls = [
     "https://api.restful-api.dev/objects",
     "https://api.restful-api.dev/objects/1/",

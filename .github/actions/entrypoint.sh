@@ -12,7 +12,7 @@ echo "Git Event Name: ${GITHUB_EVENT_NAME}"
 echo "\nStarting Git Operations"
 git config --global user.email "obynodavid12@gmail.com"
 git config --global user.name "Obinna"
-git config --global --add safe.directory '*'
+git config --global --add safe.directory '*'  # added this line to make sure the script works with any directory
 #https://devhints.io/git-log-format
 # git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
 # git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
@@ -43,36 +43,21 @@ extract_string=$(echo $content | awk '{print}')
 echo "Extracted string: $extract_string"
 
 if [[ "$extract_string" == "" ]]; then 
-    echo "\nInvalid version string"
+    echo " Invalid version string "
     exit 0
 else
-    echo "\nValid version string found"
+    echo " Valid version string found "
 fi
 
-major=$(echo $extract_string | cut -d'.' -f1) 
-minor=$(echo $extract_string | cut -d'.' -f2)
-patch=$(echo $extract_string | cut -d'.' -f3)
-release=$(echo $extract_string | cut -d'.' -f4)
-bugfix=$(echo $extract_string | cut -d'.' -f5)
-build=$(echo $extract_string | cut -d'.' -f6)
+oldver=$(echo $extract_string | rev | cut -d "." -f2- | rev);
+newver=$(echo $extract_string | rev | cut -d "." -f1 | rev | xargs | expr "$(cat)" + 1);
 
-
-
-if [[ $build = "" ]]; then
-    oldver=$(echo $major.$minor.$patch)
-    patch=$(expr $patch + 1)
-    newver=$(echo $major.$minor.$patch)
-else
-    oldver=$(echo $major.$minor.$patch.$release.$bugfix.$build)
-    build=$(expr $build + 1)
-    newver=$(echo $major.$minor.$patch.$release.$bugfix.$build)
-fi
+newver="${oldver}.${newver}";
 
 echo "\nOld Ver: $oldver"
-echo "\nUpdated version: $newver" 
+echo "\nUpdated version: $newver" ;
 
-newcontent=$(echo ${content/$oldver/$newver})
-echo $newcontent > $file_name
+echo $newver > $file_name
 
 git add -A 
 git commit -m "Incremented to ${newver}"  -m "[skip ci]"
