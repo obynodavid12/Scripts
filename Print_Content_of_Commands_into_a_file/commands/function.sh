@@ -5,9 +5,9 @@ df_func()
 	disk_drive1=$1
 	disk_drive2=$2
 	
-	echo "------ First Disk free space ------"
+	echo "------- First Disk free space -------"
 	df -kh ${disk_drive1}
-	echo "------ Second Disk free space ------"
+	echo "------- Second Disk free space -------"
 	df -kh ${disk_drive2}
 }
 

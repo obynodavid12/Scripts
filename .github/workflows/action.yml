@@ -24,7 +24,7 @@ jobs:
       with:
          filters: |
            Print_Content_of_Commands_into_a_file:
-            - 'Print_Content_of_Commands_into_a_files/**'
+            - 'Print_Content_of_Commands_into_a_file/**'
            terraform:
             - 'terraform/**'    
   deploy:
