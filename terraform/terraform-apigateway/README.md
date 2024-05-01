@@ -35,7 +35,7 @@ curl -v https://xxxx.execute-api.us-west-1.amazonaws.com/dev/pets
 curl -v -H 'Host: xxxx.execute-api.us-west-1.amazonaws.com' https://vpce-077xxxxx-xxx.execute-api.us-west-1.vpce.amazonaws.com/dev/pets
 
 
-# For accessin a Private API from an Amazon VPC in another AWS account, do the following
+# For accessing a Private API from an Amazon VPC in another AWS account, do the following
 1. Create an interface VPC endpoint in the other account
 2. Create and attach a resource policy to your privcate API. The policy must allow incoming traffic from the other account's VPC endpoint ID or VPC ID.
 
