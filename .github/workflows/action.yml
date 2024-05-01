@@ -5,8 +5,8 @@ on:
  pull_request:
    branches: [ master ]
    paths:
-     - 'Scripts/**'
-     - 'Scripts-1/**'
+     - 'Print_Content_of_Commands_into_a_file/**'
+     - 'terraform/**'
 jobs:
   changes:
     name: Detect Changes in folder
@@ -23,10 +23,10 @@ jobs:
       id: filter
       with:
          filters: |
-           Scripts:
-            - 'Scripts/**'
-           Scripts-1:
-            - 'Scripts-1/**'    
+           Print_Content_of_Commands_into_a_file:
+            - 'Print_Content_of_Commands_into_a_files/**'
+           terraform:
+            - 'terraform/**'    
   deploy:
     needs: changes
     if: ${{ needs.changes.outputs.names != '[]' }}
