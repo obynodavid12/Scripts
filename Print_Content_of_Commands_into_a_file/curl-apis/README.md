@@ -191,6 +191,19 @@ Yuri Berry      675000
 Caesar Vance    106450
 Doris Wilder    85600
 
+echo '[{"name": "John", "city": "New York", "age": 30}, {"name": "Jane", "city": "Los Angeles", "age": 25}]' | jq '.[] | if .city == "New York" then .name else empty end'
+# Output:https://ioflood.com/blog/jq-select/
+# "John"
+
+echo '[{"name": "John", "city": "New York", "age": 30}, {"name": "Jane", "city": "Los Angeles", "age": 25}]' | jq '.[] | select(has("city"))'
+
+# Output:
+# {"name": "John", "city": "New York", "age": 30}
+# {"name": "Jane", "city": "Los Angeles", "age": 25}
+
+# Try this with 
+curl 'https://launchermeta.mojang.com/mc/game/version_manifest.json' | jq '.versions[] | select(.type == "release") | .id'
+# https://www.digitalocean.com/community/tutorials/how-to-transform-json-data-with-jq has some good example
 
 # About popen.py script
 In this example, we have a list of three API URLs that we want to retrieve data from. We then loop through each URL, make a request using subprocess.check_output() and curl, and parse the JSON response using json.loads().
