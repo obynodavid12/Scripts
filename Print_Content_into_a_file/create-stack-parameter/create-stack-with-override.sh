@@ -11,7 +11,7 @@ cat > ~/create-stack-parameter/create-stack-parameter.json <<EOF
 EOF    
 
 STACK_ID="<stackname>"
-STACK_ID=$( aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://ssm-parameter.json --capabilities CAPABILITY_IAM --parameters-overrides file://create-stack-parameter.json --tags file://tag-ssm.json | jq -r .StackId )
+STACK_ID=$(aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://ssm-parameter.json --capabilities CAPABILITY_IAM --parameters-overrides file://create-stack-parameter.json --tags file://tag-ssm.json | jq -r .StackId)
 
 echo "Waiting on $STACK_ID create completion..."
 aws cloudformation wait stack-create-complete --stack-name $STACK_ID

@@ -5,7 +5,7 @@ on:
  pull_request:
    branches: [ master ]
    paths:
-     - 'Print_Content_of_Commands_into_a_file/**'
+     - 'Print_Content_into_a_file/**'
      - 'terraform/**'
 jobs:
   changes:
@@ -23,8 +23,8 @@ jobs:
       id: filter
       with:
          filters: |
-           Print_Content_of_Commands_into_a_file:
-            - 'Print_Content_of_Commands_into_a_file/**'
+           Print_Content_into_a_file:
+            - 'Print_Content_into_a_file/**'
            terraform:
             - 'terraform/**'    
   deploy:
