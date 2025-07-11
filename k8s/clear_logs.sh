@@ -1,4 +1,5 @@
 #!/bin/bash
+
 namespace="dev"
 
 # Get the list of pods in the namespace
