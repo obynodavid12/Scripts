@@ -51,7 +51,6 @@ python3 iam_keys_report.py [-h] \
     [--pattern PATTERN] \
     [--prefix PREFIX] \
     [--filter FILTER] \
-    [--contains CONTAINS] \
     [--min-age MIN_AGE] \
     [--max-age MAX_AGE] \
     [--profile PROFILE] \
