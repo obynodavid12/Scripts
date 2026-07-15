@@ -68,41 +68,11 @@ python3 iam_keys_report.py \
     --min-age 0 \
     --max-age 2000
 ```
-
-### Partial username match
-
-```bash
-python3 iam_keys_report.py \
-    --contains "obi-xyz" \
-    --min-age 0 \
-    --max-age 2000
-```
-
-### Match multiple username fragments
-
-```bash
-python3 iam_keys_report.py \
-    --contains "abc-obi-xyz,obi-xyz,xyz-com-user" \
-    --min-age 0 \
-    --max-age 2000 \
-    --csv iam_keys.csv
-```
-
-### Only users containing "xyz-com-user"
-
-```bash
-python3 iam_keys_report.py \
-    --contains "xyz-com-user" \
-    --min-age 90 \
-    --max-age 365
-```
-
-### Combine prefix and partial match
+### Using prefix
 
 ```bash
 python3 iam_keys_report.py \
     --prefix "obi-" \
-    --contains "abc-xyz-com" \
     --min-age 180 \
     --max-age 1000
 ```
@@ -115,8 +85,6 @@ python3 iam_keys_report.py \
     --min-age 0 \
     --max-age 2000
 ```
-
----
 
 # iam-check.py
 
@@ -175,7 +143,11 @@ python3 check-iam-keys.py ".*-prod$"
 ```bash
 python3 check-iam-keys.py "^abc-.*"
 ```
-
+## Filter with multiple substrings using alternation
+```bash
+python check-iam-keys.py "obi-xyz-com|obi-abc|xyz-com-user"
+python check-iam-keys.py "obi-xyz-com|test|devops-"
+```
 ---
 
 # check.py
